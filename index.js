@@ -21,7 +21,6 @@ const sharedWithMeRoutes = require('./routes/sharedWithMePage.js');
 const User = require('./models/user.js');
 
 // Connect to mongodb
-//mongodb://127.0.0.1:27017/virtualgallery
 const dbUrl = process.env.DB_URL;
 mongoose.connect(dbUrl).then(() => {
     console.log('Mongo Connection Successful!');

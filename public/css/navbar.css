@@ -19,10 +19,27 @@
     align-items: center;
 }
 
-.navbar span {
+.navbar .appName {
     font-size: 1.5em;
-    text-align: start;
     padding: 0 30px;
+    width: 105px;
+    min-width: 105px;
+    display: flex;
+    align-items: center;
+}
+
+.appName span {
+    display: inline-block;
+}
+
+.navbar img {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    overflow: hidden;
+    margin-bottom: 5px;
+    margin-right: 8px;
 }
 
 .navButton {

@@ -68,9 +68,11 @@
 }
 
 #clearFilterBtn {
-    padding: 10px 10px;
+    display: block;
+    padding: 10px;
     margin: auto 0;
     background-color: #21A179;
+    color: white;
     border: none;
     border-radius: 5%;
     font-family: inherit;
@@ -92,6 +94,7 @@
     #searchFilters div select,
     #clearFilterBtn {
         font-size: 11px;
+        padding: 10px;
     }
 
     .clearFilter {
