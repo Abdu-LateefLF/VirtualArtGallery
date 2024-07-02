@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
 
         let sortString = '';
         let sortOrder = 'desc';
-        let pageNumber = Number(page);
+        let pageNumber = Math.min(8156, Number(page));
 
         switch (sortBy) {
             case 'Most Viewed': sortString = 'totalpageviews'; break;
@@ -62,7 +62,7 @@ router.get('/', async (req, res) => {
             }
         }
 
-        res.render('home', { data, search, sortBy, culture, classification, page, ...havardAPIUtils });
+        res.render('home', { data, search, sortBy, culture, classification, pageNumber, ...havardAPIUtils });
     } catch (err) {
         next(err);
     }

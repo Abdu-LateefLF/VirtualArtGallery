@@ -96,8 +96,8 @@
                             <footer>
                                 <div class="recordOptions">
                                     <a href="/<%= record.id %>">View Record</a>
-                                    <a class="addBtn <%= record.addedToGallery === true? 'added' : ''%>" id="id<%= record.id %>">
-                                        <% if (record.addedToGallery === false) {%>Add To Gallery <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                    <a class="addBtn <%= (record.addedToGallery === true || user === undefined)? 'added' : ''%>" id="id<%= record.id %>">
+                                        <% if (user === undefined || record.addedToGallery === false) {%>Add To Gallery <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                                             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
                                         </svg>
@@ -116,17 +116,17 @@
     
     <% if (data?.records?.length > 0) { %>
         <footer class="pageNavigate">
-            <% if (page > 1) { %>
+            <% if (pageNumber > 1) { %>
                 <nav>
-                    <a href="/?page=<%= page - 1 %>&search=<%= search %>&sortBy=<%= sortBy %>&classification=<%= classification %>&culture=<%= culture %>">
+                    <a href="/?page=<%= pageNumber - 1 %>&search=<%= search %>&sortBy=<%= sortBy %>&classification=<%= classification %>&culture=<%= culture %>">
                         prev
                     </a>
                 </nav>
             <% } %>
-            <span>Page <%= page %> of <%= data.info.pages %></span>
-            <% if (page < data.info.pages) { %>
+            <span>Page <%= pageNumber %> of <%= data.info.pages %></span>
+            <% if (pageNumber < data.info.pages) { %>
                 <nav>
-                    <a href="/?page=<%= page + 1 %>&search=<%= search %>&sortBy=<%= sortBy %>&classification=<%= classification %>&culture=<%= culture %>">next</a>
+                    <a href="/?page=<%= pageNumber + 1 %>&search=<%= search %>&sortBy=<%= sortBy %>&classification=<%= classification %>&culture=<%= culture %>">next</a>
                 </nav>
             <% } %>
         </footer>
