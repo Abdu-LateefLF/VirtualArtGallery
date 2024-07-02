@@ -80,7 +80,7 @@
     position: fixed;
     top: 85px;
     width: 100%;
-    height: 250px;
+    height: 300px;
     transition: height 0.35s ease-in;
     overflow: hidden;
     display: none;
@@ -93,7 +93,7 @@
 #navList .list {
     margin: 0 auto;
     width: 90%;
-    height: 240px;
+    height: 290px;
     background-color: #1c2942;
     border-radius: 20px;
     display: flex;
