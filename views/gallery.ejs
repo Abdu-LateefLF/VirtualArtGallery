@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= isAuthor? "My Gallery" : `${gallery.owner.firstName}` + "'s Gallery" %></title>
+
+    <!-- Style Sheets-->
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/gallery.css">
+</head>
+
+<body>
+    <%- include('partials/navbar.ejs', {tab: 2}) %>
+
+    <header>
+        <h1><%= isAuthor? "My Gallery" : `${gallery.owner.firstName}` + "'s Gallery" %></h1>
+
+        <% if (isAuthor) {%>
+            <button id="shareBtn">Share</button>
+        <% } %>
+    </header>
+
+    <main>
+        <!-- Display Record Pop up -->
+        <div id="viewRecord" class="viewRecord hide">
+            <button class="backBtn">Close</button>
+            <div class="info">
+                <span>Title</span>
+                <strong>User's Comments</strong>
+                <p>Test text.</p>
+            </div>
+            <img src="">
+        </div>
+
+        <!-- Share Gallery Pop up-->
+        <% if (isAuthor) {%>
+            <div id="shareGallery" class="shareGallery hide">
+                <button class="backBtn">Close</button>
+                <div class="info">
+                    <section>
+                        <label for="search">Search for User:</label>
+                        <div class="searchBar">
+                            <input type="text" id="search" placeholder="Search" name="search">
+                            <button id="searchBtn">Search</button>
+                        </div>
+                        <div class="scroller">
+                            <span id="info" class="hide"></span>
+                            <div id="userPanel" class="user hide">
+                                <span>theArtistGuy</span>
+                                <button id="addUser">Add</button>
+                                <input type="hidden">
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="info">
+                    <section>
+                        <label for="scroller">Shared With:</label>
+                        <div class="scroller" id="sharedUsers">
+                            <!-- Shared users go here...-->
+                        </div>
+                    </section>
+                </div>
+            </div>
+        <% } %>
+
+        <!-- Gallery Display-->
+        <% if (records?.length > 0) { %>
+            <% for (let record of records) {%>
+                <!-- Gallery Record card-->
+                <article 
+                    class="record" 
+                    onclick="(function() {
+                        const view = document.querySelector('#viewRecord');
+                        const title = document.querySelector('#viewRecord span');
+                        const comment = document.querySelector('#viewRecord p');
+                        const img = document.querySelector('#viewRecord img');
+                        title.innerText = '<%= record.title %>';
+                        comment.innerText = '<%= record.userComments %>';
+                        img.src = '<%= tryGetImage(record.images) %>';
+                        view.classList.remove('hide');
+                        console.log('<%= record.title %>');
+                    })()"
+                >
+                    <div class="recordRight">
+                        <form action="/gallery/<%= record.id %>?_method=DELETE" method="post">
+                            <% if (isAuthor) {%>
+                                <button class="deleteBtn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                                    </svg>
+                                </button>
+                            <% } %>
+                        </form>
+                        <img src="<%= tryGetImage(record.images) %>">
+                        <span class="recordTitle"><b><%= shortenTitle(record.title) %></b></span>
+                        <hr>
+                        <section>
+                            <span>Views: <%= record.totalpageviews.toLocaleString() %></span>
+                            <span>Publications: <%= record.publicationcount.toLocaleString() %></span>
+                        </section>
+                        <span>[Click To View]</span>
+                    </div>
+                </article>
+            <% } %>
+        <% } else { %>
+            <% if (isAuthor) {%>
+                <span class="noResults">You have no records in your gallery, add some through the browse section..</span>
+            <% } else { %>
+                <span class="noResults">This person has no records in thier gallery...</span>
+            <% } %>
+        <% } %>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="/js/gallery.js"></script>
+</body>
+
+</html>

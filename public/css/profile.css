@@ -1,0 +1,111 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 90%;
+    height: 600px;
+    margin: 30px auto;
+    color: white;
+    background-color: #1c1e1eb8;
+    border-radius: 25px;
+}
+
+.updateForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: flex-start;
+    border-radius: 25px;
+    height: 300px;
+    width: 70%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px 30px;
+    font-size: 1em;
+}
+
+.deleteForm {
+    height: 200px;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+.name {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.formField {
+    display: inline-block;
+    height: 50px;
+    width: 100%;
+    padding-right: 10px;
+}
+
+.formField label {
+    display: block;
+}
+
+.formField input {
+    display: block;
+    height: 20px;
+    width: 100%;
+}
+
+form footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 30px;
+    margin-top: 30px;
+}
+
+footer button,
+.danger {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    background-color: #26334f;
+    color: white;
+}
+
+footer a {
+    color: lightskyblue;
+}
+
+.deleteForm footer {
+    max-width: 500px;
+    margin: 0 auto;
+    height: 50px;
+}
+
+.danger {
+    background-color: red;
+    text-decoration: none;
+}
+
+.delWarning {
+    display: block;
+    font-size: 1rem;
+}
+
+@media (max-width: 680px) {
+    h1 {
+        font-size: 6vw;
+    }
+
+    .name {
+        flex-direction: column;
+    }
+
+    .deleteForm footer {
+        flex-direction: column;
+        height: 70px;
+    }
+}

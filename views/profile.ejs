@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+
+    <!-- Style Sheets-->
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+
+<body>
+    <%- include('partials/navbar.ejs') %>
+
+    <main>
+        <form class="updateForm" action="/profile?_method=PUT" method="post">
+            <h1>Update Profile</h1>
+
+            <div class="name">
+                <div class="formField">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" value="<%= user.firstName %>">
+                </div>
+                <div class="formField">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" value="<%= user.lastName %>">
+                </div>
+            </div>
+            <div class="formField">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" value="<%= user.username %>">
+            </div>
+            <footer>
+                <button>Save</button>
+                <a id="cancelBtn" class="danger" href="/profile">Cancel</a>
+            </footer>
+        </form>
+
+        <form class="deleteForm" action="/profile?_method=DELETE" method="post">
+            <h2>Delete Account</h2>
+            <footer>
+                <span class="delWarning">Note: This will be permanent!</span>
+                <button class="danger">Delete Account</button>
+            </footer>
+        </form>
+    </main>
+
+    <script src="/js/profile.js"></script>
+</body>
+
+</html>

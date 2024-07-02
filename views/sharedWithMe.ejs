@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared With Me</title>
+
+    <!-- Style Sheets-->
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/sharedWithMe.css">
+</head>
+
+<body>
+    <%- include('partials/navbar.ejs', {tab: 3}) %>
+
+    <header>
+        <h1>Galleries Shared With You:</h1>
+    </header>
+
+    <main>
+        <% if (sharedGalleries.length > 0) {%>
+            <% for (let gallery of sharedGalleries) {%>
+                <div class="galleryCard">
+                    <form action="/gallery" method="get" class="cardHeader">
+                        <div>
+                            <strong><%= gallery.owner.firstName %>'s Gallery</strong>
+                            <div class="info">
+                                <span>User: <%= gallery.owner.username %></span>
+                                <span>Created on <%= gallery.created.toISOString().slice(0, 10) %></span>
+                            </div>
+                        </div>
+                        <button>View Gallery</button>
+                        <input type="hidden" name="view" value="<%= gallery.owner._id %>">
+                    </form>
+                </div>
+            <% } %>
+        <% } else {%>
+            <span>You have no galleries shared to you.</span>
+        <% } %>
+    </main>
+</body>
+
+</html>

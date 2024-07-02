@@ -1,0 +1,282 @@
+header {
+    width: 80%;
+    margin: 0 auto;
+    height: 50px;
+    color: #81AE9D;
+    background-color: rgb(15, 73, 73);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+header button {
+    border: 2px solid #FB9F49;
+    color: #26334f;
+    background-color: #FB9F49;
+    padding: 5px 20px;
+    text-decoration: none;
+}
+
+header button:hover {
+    color: #FB9F49;
+    background-color: #26334f;
+}
+
+h1 {
+    font-size: 3rem;
+    padding: 0px 30px;
+}
+
+@media (max-width: 720px) {
+    h1 {
+        font-size: 7vw;
+    }
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: space-around;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    padding: 5px 5px;
+    margin: 0 auto;
+}
+
+.record {
+    display: flex;
+    background-color: #1e283e;
+    border-radius: 25px;
+    width: 300px;
+    height: 390px;
+    margin: 50px 20px;
+    padding: 10px;
+}
+
+.record:hover {
+    background-color: #0f141f;
+}
+
+.recordOptions {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.recordRight {
+    display: inline-block;
+    color: white;
+    width: 300px;
+    height: 330px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5%;
+}
+
+.recordRight img {
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 5%;
+    object-fit: contain;
+    overflow: hidden;
+}
+
+.recordTitle {
+    display: block;
+    padding: 10px 3px;
+}
+
+.deleteBtn {
+    display: block;
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    border: none;
+    border-radius: 50%;
+    margin-left: auto;
+    color: red;
+    background: none;
+}
+
+.deleteBtn:hover {
+    background-color: #131927;
+}
+
+.shareGallery {
+    position: fixed;
+    width: 90%;
+    max-width: 600px;
+    height: 600px;
+    background-color: #131927;
+    top: 50px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 1em;
+}
+
+.shareGallery.hide {
+    display: none;
+}
+
+.shareGallery .backBtn {
+    text-align: right;
+    padding-right: 30px;
+    height: 45px;
+}
+
+.shareGallery section {
+    width: inherit;
+    margin: 20px;
+}
+
+.shareGallery label {
+    display: block;
+}
+
+.shareGallery .searchBar {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.shareGallery .searchBar input {
+    padding: 4px 10px;
+    flex: 2 1 450px;
+    font-family: inherit;
+}
+
+.shareGallery .searchBar button {
+    flex: 1 2 150px;
+    font-family: inherit;
+}
+
+.shareGallery .scroller {
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.scroller .user {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    border: 3px solid gray;
+    background-color: #131927;
+    margin-bottom: 5px;
+}
+
+.scroller .user.hide {
+    display: none;
+}
+
+.scroller .user button {
+    border: none;
+    background-color: aliceblue;
+}
+
+.scroller .user button:hover {
+    background-color: gray;
+}
+
+.viewRecord {
+    position: fixed;
+    width: 90%;
+    max-width: 1200px;
+    height: 600px;
+    background-color: #131927;
+    top: 50px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.viewRecord .info {
+    flex: 2 1 300px;
+    max-width: 400px;
+    overflow-y: auto;
+    padding: 5px 10px;
+    color: white;
+    background-color: #0f141f;
+}
+
+.viewRecord .info span {
+    display: block;
+    font-size: 2vw;
+    font-weight: 600;
+    padding: 5px 10px;
+    margin-bottom: 30px;
+}
+
+.viewRecord .info strong {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 5px 10px;
+    color: #81AE9D;
+}
+
+.viewRecord .info p {
+    padding: 5px 10px;
+}
+
+.viewRecord img {
+    flex: 1 2 700px;
+    max-width: 700px;
+    padding: 5px;
+    object-fit: contain;
+    overflow: hidden;
+}
+
+.backBtn {
+    display: block;
+    color: #FB9F49;
+    font-size: 1em;
+    background-color: #171f2f;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+.backBtn:hover {
+    background-color: #0f141f;
+}
+
+@media (max-width: 1050px) {
+    .viewRecord .info {
+        max-width: 100%;
+    }
+
+    .viewRecord {
+        flex-direction: column-reverse;
+    }
+
+    .viewRecord .info span {
+        font-size: 22px;
+    }
+
+    .backBtn {
+        padding: 20px 10px;
+    }
+}
+
+.noResults {
+    color: white;
+    padding: 20px 5px;
+}
+
+.hide {
+    display: none;
+}

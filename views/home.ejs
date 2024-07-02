@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtMe</title>
+
+    <!-- Style Sheets-->
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body>
+    <%- include('partials/navbar.ejs', {tab: 1}) %>
+
+    <header class="searchFormContainer">
+        <form class="searchForm" action="/" method="get">
+            <section>
+                <input type="text" id="search" placeholder="Search" name="search" value="<%= search %>">
+                <button id="searchBtn">Search</button>
+            </section>
+            <section id="searchFilters">
+                <div>
+                    <select id="sortBy" name="sortBy">
+                        <option value="Most Viewed" <% if (sortBy==='Most Viewed' ) {%>selected<% } %>>Most Viewed</option>
+                        <option value="Highest Ranking" <% if (sortBy==='Highest Ranking') {%>selected<% } %>>Highest Ranking</option>
+                        <option value="Most Publications" <% if (sortBy==='Most Publications') {%>selected<% } %>>Most Publications</option>
+                    </select>
+                </div>
+
+                <div>
+                    <select id="classification" name="classification">
+                        <% for (let classif of classifications) { %>
+                            <option 
+                                value="<%= classif %>"
+                                <% if (classif === classification) {%>selected<% } %>
+                            >   
+                                <%= classif %>
+                            </option>
+                        <% } %>
+                    </select>
+                </div>
+                <div>
+                    <select id="culture" name="culture">
+                        <% for (let cult of cultures) { %>
+                            <option
+                                value="<%= cult %>"
+                                <% if (cult === culture) {%>selected<% } %>
+                            >   
+                                <%= cult %>
+                            </option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="clearFilter">
+                    <button id="clearFilterBtn">Clear Filters</button>
+                </div>
+            </section>
+        </form>
+    </header>
+
+    <!-- 'Add to Gallery' Pop up -->
+    <div id="addToGalleryView" class="hide">
+        <form>
+            <span class="title">Add To Gallery</span>
+            <div>
+                <label for="comment">Add Comment:</label>
+                <textarea id="comment"></textarea>
+            </div>
+            <span class="options">
+                <button id="saveBtn">Save</button>
+                <button id="closeBtn" style="background-color: red;">Close</button>
+            </span>
+            <input class="objectId" type="text" style="display: none;">
+        </form>
+    </div>
+
+    <main>
+        <div class="scroller">
+            <% if (data?.records?.length > 0) { %>
+                <% for (let record of data.records) {%>
+                    <!-- Museum Record card-->
+                    <article class="record">
+                        <div class="recordRight">
+                            <img src="<%= tryGetImage(record.images) %>">
+                            <span class="recordTitle"><b><%= shortenTitle(record.title) %></b></span>
+                            <hr>
+                            <section>
+                                <span>Views: <%= record.totalpageviews.toLocaleString() %></span>
+                                <span>Publications: <%= record.publicationcount.toLocaleString() %></span>
+                            </section>
+                        </div>
+                        <div class="recordLeft">
+                            <footer>
+                                <div class="recordOptions">
+                                    <a href="/<%= record.id %>">View Record</a>
+                                    <a class="addBtn <%= record.addedToGallery === true? 'added' : ''%>" id="id<%= record.id %>">
+                                        <% if (record.addedToGallery === false) {%>Add To Gallery <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                                        </svg>
+                                        <% } else {%>Saved<% } %>
+                                    </a>
+                                </div>
+                            </footer>
+                        </div>
+                    </article>
+                <% } %>
+            <% } else { %>
+                <span class="noResults">No results matched your search..</span>
+            <% } %>
+        </div>
+    </main>
+    
+    <% if (data?.records?.length > 0) { %>
+        <footer class="pageNavigate">
+            <% if (page > 1) { %>
+                <nav>
+                    <a href="/?page=<%= page - 1 %>&search=<%= search %>&sortBy=<%= sortBy %>&classification=<%= classification %>&culture=<%= culture %>">
+                        prev
+                    </a>
+                </nav>
+            <% } %>
+            <span>Page <%= page %> of <%= data.info.pages %></span>
+            <% if (page < data.info.pages) { %>
+                <nav>
+                    <a href="/?page=<%= page + 1 %>&search=<%= search %>&sortBy=<%= sortBy %>&classification=<%= classification %>&culture=<%= culture %>">next</a>
+                </nav>
+            <% } %>
+        </footer>
+    <% } %>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="/js/home.js"></script>
+</body>
+
+</html>

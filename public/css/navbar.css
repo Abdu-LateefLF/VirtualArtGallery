@@ -1,0 +1,141 @@
+.navbar {
+    display: flex;
+    position: sticky;
+    top: 0;
+    height: 70px;
+    padding: 5px 10px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #26334f;
+    font-size: 15px;
+    color: #FB9F89;
+}
+
+.navbar nav {
+    display: flex;
+    width: 600px;
+    height: 50px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.navbar span {
+    font-size: 1.5em;
+    text-align: start;
+    padding: 0 30px;
+}
+
+.navButton {
+    color: #FB9F89;
+    padding: 5px 7px;
+    text-decoration: none;
+}
+
+.navButton:hover,
+.navButton.selected {
+    color: #696969;
+    text-decoration: underline solid white;
+}
+
+#loginBtn {
+    border: 2px solid #FB9F49;
+    color: #FB9F49;
+    padding: 5px;
+    text-decoration: none;
+}
+
+#loginBtn:hover {
+    color: #26334f;
+    background-color: #5fb35d;
+    border: none;
+}
+
+.logoutRegisterBtn {
+    background-color: #FB9F49;
+    color: #26334f;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.logoutRegisterBtn:hover {
+    color: #FB9F49;
+    background-color: #26334f;
+    border: 2px solid #FB9F49;
+}
+
+
+#listIcon {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+    border-radius: 5px;
+    display: none;
+}
+
+#listIcon:hover {
+    background-color: #131a27;
+}
+
+#navList {
+    position: fixed;
+    top: 85px;
+    width: 100%;
+    height: 250px;
+    transition: height 0.35s ease-in;
+    overflow: hidden;
+    display: none;
+}
+
+#navList.hide {
+    height: 0px;
+}
+
+#navList .list {
+    margin: 0 auto;
+    width: 90%;
+    height: 240px;
+    background-color: #1c2942;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 20px 40px;
+    box-shadow: 0px 10px 5px rgba(39, 47, 63, 0.753);
+}
+
+.navListItem {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    color: white;
+    text-decoration: none;
+    border-bottom: 2px solid #d6d6d6;
+}
+
+.navListItem:hover {
+    color: #FB9F49;
+    border-color: #FB9F49;
+}
+
+@media (max-width: 850px) {
+    nav.links {
+        display: none;
+    }
+
+    .links {
+        display: none;
+    }
+
+    .navbar nav {
+        justify-content: flex-end;
+    }
+
+    #listIcon {
+        display: block;
+    }
+
+    #navList {
+        display: block;
+    }
+}

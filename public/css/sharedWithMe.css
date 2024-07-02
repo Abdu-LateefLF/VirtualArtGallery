@@ -1,0 +1,98 @@
+header {
+    width: 80%;
+    margin: 0 auto;
+    color: #81AE9D;
+    background-color: rgb(15, 73, 73);
+}
+
+h1 {
+    font-size: 2rem;
+    padding: 0px 30px;
+}
+
+main {
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.galleryCard {
+    height: 150px;
+    width: 90%;
+    background-color: #1e283e;
+    padding: 20px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.galleryCard .cardHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.galleryCard .cardHeader div {
+    width: inherit;
+    min-width: 0;
+}
+
+.galleryCard strong {
+    flex: 2 1 400px;
+    font-size: 3vw;
+    min-width: 0;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.galleryCard button {
+    flex: 0 0 50px;
+    padding: 5px 30px;
+    max-height: 60px;
+    background-color: #FB9F49;
+    border: none;
+    border-radius: 20px;
+}
+
+.info {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+span {
+    color: white;
+}
+
+@media (max-width: 900px) {
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .galleryCard {
+        display: flex;
+        justify-content: space-evenly;
+        height: 185px;
+    }
+
+    .galleryCard strong {
+        font-size: 3.5vw;
+    }
+
+    .galleryCard .cardHeader {
+        flex-direction: column;
+        justify-content: space-evenly
+    }
+
+    .galleryCard button {
+        padding: 13px 30px;
+        max-height: 72px;
+        width: inherit;
+    }
+
+    span {
+        font-size: 2vw;
+    }
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Record</title>
+
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/viewRecord.css">
+</head>
+
+<body>
+    <header>
+        <%- include('partials/navbar.ejs') %>
+
+        <a class="backBtn" href="/">Back</a>
+
+        <h1><%= record.titles[0].title %></h1>
+        <h2>Author(s):
+            <% if (record.people !== undefined) { %>
+                <% for (let i = 0; i < record.people.length; i++) { %>
+                    <%= record.people[i].name %><% if (i + 1 !== record.people.length) { %>, <% } %> 
+                <% } %>
+            <% } else {%>
+                Unknown
+            <% } %>
+        </h2>
+        <hr>
+    </header>
+
+    <main>
+        <section class="info">
+            <% if (record.dated) {%>
+            <p>Dated: <%= record.dated %></p>
+            <% } %>
+            <% if (record.technique) {%>
+                <p>Technique: <%= record.technique %></p>
+            <% } %>
+            <% if (record.culture) {%>
+                <p>Culture: <%= record.culture %></p>
+            <% } %>
+
+            <div class="metrics">
+                <strong>Views: <%= record.totalpageviews.toLocaleString() %></strong>
+                <strong>Publications: <%= record.publicationcount.toLocaleString() %></strong>
+            </div>
+            
+            <% if (record.description) {%>
+                <span>Description</span>
+                <p><%= record.description %></p>
+            <% } %>
+            <% if (record.commentary) {%>
+                <span>Commentary</span>
+                <p><%= record.commentary %></p>
+            <% } %>
+            <% if (record.publications?.length > 0) {%>
+                <span>Publications</span>
+                <% for (let i = 0; i < record.publications.length && i < 20; i++ ) {%>
+                    <article>
+                        <div>
+                            <p><%= record.publications[i].title %></p>
+                            <p>Year: <%= record.publications[i].publicationyear %> | Place: <%= record.publications[i].publicationplace %></p>
+                        </div>
+                    </article>
+                <% } %>
+            <% } %>
+        </section>
+        <figure>
+            <img src="<%= record.primaryimageurl %>">
+        </figure>
+    </main>
+</body>
+
+</html>
